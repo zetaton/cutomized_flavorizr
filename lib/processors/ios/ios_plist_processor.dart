@@ -44,6 +44,7 @@ class IOSPListProcessor extends StringProcessor {
     XmlElement root = (document.rootElement.children.where((XmlNode node) => node is XmlElement).first) as XmlElement;
 
     _updateCFBundleName(root);
+    _updateCFBundleDisplayName(root);
 
     if ((config.instructions ?? []).contains("ios:launchScreen")) _updateUILaunchStoryboardName(root);
 
@@ -53,6 +54,11 @@ class IOSPListProcessor extends StringProcessor {
   void _updateCFBundleName(XmlElement root) => _updatePListValueAtKey(
         root,
         'CFBundleName',
+        '\$(BUNDLE_NAME)',
+      );
+  void _updateCFBundleDisplayName(XmlElement root) => _updatePListValueAtKey(
+        root,
+        'CFBundleDisplayName',
         '\$(BUNDLE_NAME)',
       );
 
