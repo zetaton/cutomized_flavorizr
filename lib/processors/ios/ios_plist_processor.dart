@@ -45,6 +45,7 @@ class IOSPListProcessor extends StringProcessor {
 
     _updateCFBundleName(root);
     _updateCFBundleDisplayName(root);
+    _updateUILaunchStoryboardName(root);
 
     if ((config.instructions ?? []).contains("ios:launchScreen")) _updateUILaunchStoryboardName(root);
 
@@ -65,7 +66,7 @@ class IOSPListProcessor extends StringProcessor {
   void _updateUILaunchStoryboardName(XmlElement root) => _updatePListValueAtKey(
         root,
         'UILaunchStoryboardName',
-        '\$(ASSET_PREFIX)LaunchScreen',
+        '\$(LAUNCH_SCREEN_STORYBOARD)',
       );
 
   void _updatePListValueAtKey(XmlElement root, String key, String value) {
